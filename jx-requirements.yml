@@ -1,0 +1,53 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+cluster:
+  clusterName: "jenkinsx"
+  devEnvApprovers: []
+
+  environmentGitOwner: ""
+  project: "jenkinsx-demo-303013"
+  provider: gke
+  zone: "us-central1-a"
+gitops: true
+environments:
+- key: dev
+- key: staging
+- key: production
+ingress:
+  domain: ""
+  externalDNS: false
+  tls:
+    email: ""
+    enabled: false
+    production: true
+kaniko: true
+storage:
+  backup:
+    enabled: true
+    url: gs://backup-jenkinsx-9d1962d6e542
+  logs:
+    enabled: true
+    url: gs://logs-jenkinsx-9d1962d6e542
+  reports:
+    enabled: true
+    url: gs://reports-jenkinsx-9d1962d6e542
+  repository:
+    enabled: true
+    url: gs://repository-jenkinsx-9d1962d6e542
+secretStorage: vault
+vault:
+  name: jenkinsx
+  bucket: vault-jenkinsx-9d1962d6e542
+  key: crypto-key-jenkinsx-9d1962d6e542
+  keyring: keyring-jenkinsx-9d1962d6e542
+  serviceAccount: jenkinsx-vt
+velero:
+  namespace: velero
+  schedule: "0 * * * *"
+  serviceAccount: jenkinsx-vo
+  ttl: "720h0m0s"  
+versionStream:
+  ref: master
+  url: https://github.com/jenkins-x/jenkins-x-versions.git
+webhook: "prow"
